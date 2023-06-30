@@ -1,0 +1,27 @@
+.Room {
+  background-color: lightgray;
+  padding: 10px;
+
+  &__status {
+    position: absolute;
+    width: 100px;
+    height: 200px;
+    border: 1px solid black;
+
+    &--busy {
+      background-color: red;
+
+      &:hover {
+        cursor:pointer;
+      }
+    }
+
+    &--free {
+      background-color: green;
+
+      &:hover {
+        cursor:pointer;
+      }
+    }
+  }
+}
