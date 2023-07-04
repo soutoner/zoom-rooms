@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { SocketContext } from "../contexts/SocketContext";
-import { Channel } from "phoenix";
+import { useContext, useEffect, useState } from 'react';
+import { SocketContext } from '../contexts/SocketContext';
+import { Channel } from 'phoenix';
 
 export const useChannel = (channelName: string) => {
   const [channel, setChannel] = useState<Channel | null>(null);
@@ -8,8 +8,8 @@ export const useChannel = (channelName: string) => {
 
   useEffect(() => {
     const channel = socket?.channel(channelName);
-    channel?.join().receive("ok", () => {
-      console.log("Joined successfully");
+    channel?.join().receive('ok', () => {
+      console.log('Joined successfully');
       setChannel(channel);
     });
 

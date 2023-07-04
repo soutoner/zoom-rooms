@@ -1,5 +1,5 @@
-import { Room } from "../room/Room";
-import "./RoomList.scss";
+import { Room } from '../room/Room';
+import './RoomList.scss';
 
 interface Props {
   rooms: string[];
@@ -7,11 +7,11 @@ interface Props {
 
 export function RoomList({ rooms }: Props) {
   if (rooms.length === 0) {
-    return "Loading";
+    return <p data-testid="RoomList--no-rooms">No rooms configured yet</p>;
   }
 
   return (
-    <div className="RoomList">
+    <div className="RoomList" data-testid="RoomList">
       {rooms.map((room, index) => (
         <Room key={index} name={room} />
       ))}

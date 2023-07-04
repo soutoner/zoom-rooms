@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
-import { Socket } from "phoenix";
+import { createContext, useEffect, useState } from 'react';
+import { Socket } from 'phoenix';
+import { SocketConstants, SOCKET_URL } from '../constants/Socket';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -11,19 +12,21 @@ export function SocketProvider({ children }: Props) {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const socket = new Socket("ws://localhost:4000/socket");
+    const socket = new Socket(SOCKET_URL, {
+      reconnectAfterMs: () => SocketConstants.RECONNECT_AFTER_MS,
+    });
     socket.connect();
     setSocket(socket);
 
     return () => {
-      console.log("disconnecting");
+      console.log('disconnecting');
       socket.disconnect();
       setSocket(null);
     };
   }, []);
 
   if (!socket) {
-    return "Connecting";
+    return 'Connecting';
   }
 
   return (
