@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { Socket } from 'phoenix';
-import { SocketConstants, SOCKET_URL } from '../constants/Socket';
+import { SocketConstants, SOCKET_URL } from '../../constants/Socket';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -19,9 +19,7 @@ export function SocketProvider({ children }: Props) {
     setSocket(socket);
 
     return () => {
-      console.log('disconnecting');
       socket.disconnect();
-      setSocket(null);
     };
   }, []);
 

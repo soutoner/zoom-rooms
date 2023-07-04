@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useChannel } from './hooks/useChannel';
+import { useContext, useEffect, useState } from 'react';
+import { useChannel } from './hooks/channel/useChannel';
 import { RoomList } from './components/room-list/RoomList';
+import { SocketContext } from './contexts/socket/SocketProvider';
 import './App.scss';
 
 function App() {
-  const channel = useChannel('room:lobby');
+  const socket = useContext(SocketContext);
+  const channel = useChannel(socket, 'room:lobby');
   const [roomList, setRoomList] = useState<string[]>([]);
 
   useEffect(() => {

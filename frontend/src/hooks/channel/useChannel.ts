@@ -1,10 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import { SocketContext } from '../contexts/SocketContext';
-import { Channel } from 'phoenix';
+import { useEffect, useState } from 'react';
+import { Channel, Socket } from 'phoenix';
 
-export const useChannel = (channelName: string) => {
+export const useChannel = (socket: Socket | null, channelName: string) => {
   const [channel, setChannel] = useState<Channel | null>(null);
-  const socket = useContext(SocketContext);
 
   useEffect(() => {
     const channel = socket?.channel(channelName);
@@ -17,7 +15,7 @@ export const useChannel = (channelName: string) => {
     return () => {
       channel?.leave();
     };
-  }, []);
+  }, [channelName, socket]);
 
   return channel;
 };
