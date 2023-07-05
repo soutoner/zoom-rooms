@@ -7,7 +7,6 @@ export const useChannel = (socket: Socket | null, channelName: string) => {
   useEffect(() => {
     const channel = socket?.channel(channelName);
     channel?.join().receive('ok', () => {
-      console.log('Joined successfully');
       setChannel(channel);
     });
 

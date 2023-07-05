@@ -1,14 +1,19 @@
 import { describe, afterEach, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { SocketProvider } from './SocketProvider';
-import { Socket } from 'phoenix';
 
-vi.mock('phoenix', () => {
-  const Socket = vi.fn();
-  Socket.prototype.connect = vi.fn();
-  Socket.prototype.disconnect = vi.fn();
+const mockConnect = vi.fn();
+const mockDisconnect = vi.fn();
 
-  return { Socket };
+vi.mock('phoenix', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('phoenix')>();
+  return {
+    ...actual,
+    Socket: vi.fn(() => ({
+      connect: mockConnect,
+      disconnect: mockDisconnect,
+    })),
+  };
 });
 
 describe('SocketProvider:', () => {
@@ -32,17 +37,16 @@ describe('SocketProvider:', () => {
   it('should connect the socket', () => {
     renderProvider();
 
-    expect(Socket.prototype.connect).toBeCalledTimes(1);
+    expect(mockConnect).toBeCalledTimes(1);
   });
 
   it('should disconnect the socket', () => {
     const { unmount } = renderProvider();
 
-    // Why this first call happens?
-    expect(Socket.prototype.disconnect).toBeCalledTimes(1);
+    expect(mockDisconnect).toBeCalledTimes(0);
 
     unmount();
 
-    expect(Socket.prototype.disconnect).toBeCalledTimes(2);
+    expect(mockDisconnect).toBeCalledTimes(1);
   });
 });
