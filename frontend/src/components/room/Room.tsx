@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Room.scss';
+import 'src/components/room/Room.scss';
 
 export interface Props {
   name: string;

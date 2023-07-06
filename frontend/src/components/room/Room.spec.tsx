@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Props, Room } from './Room';
+import { Props, Room } from 'src/components/room/Room';
 
 describe('<Room />', () => {
   const name = 'TestRoom';

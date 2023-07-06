@@ -1,5 +1,5 @@
-import { Room } from '../room/Room';
-import './RoomList.scss';
+import { Room } from 'src/components/room/Room';
+import 'src/components/room-list/RoomList.scss';
 
 interface Props {
   rooms: string[];

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { Socket } from 'phoenix';
-import { SocketConstants, SOCKET_URL } from '../../constants/Socket';
+import { SocketConstants, SOCKET_URL } from 'src/constants/Socket';
 
 interface Props {
   children: JSX.Element | JSX.Element[];

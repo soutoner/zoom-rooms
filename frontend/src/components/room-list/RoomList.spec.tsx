@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { RoomList } from './RoomList';
+import { RoomList } from 'src/components/room-list/RoomList';
 
 describe('<RoomList />', () => {
   it('should render message if no rooms', () => {

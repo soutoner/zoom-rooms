@@ -1,6 +1,6 @@
 import { describe, afterEach, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { SocketProvider } from './SocketProvider';
+import { SocketProvider } from 'src/contexts/socket/SocketProvider';
 
 const mockConnect = vi.fn();
 const mockDisconnect = vi.fn();

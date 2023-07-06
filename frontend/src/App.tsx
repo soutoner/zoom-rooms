@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import { useChannel } from './hooks/channel/useChannel';
-import { RoomList } from './components/room-list/RoomList';
-import { SocketContext } from './contexts/socket/SocketProvider';
-import './App.scss';
+import { useChannel } from 'src/hooks/channel/useChannel';
+import { RoomList } from 'src/components/room-list/RoomList';
+import { SocketContext } from 'src/contexts/socket/SocketProvider';
+import 'src/App.scss';
 
 function App() {
   const socket = useContext(SocketContext);

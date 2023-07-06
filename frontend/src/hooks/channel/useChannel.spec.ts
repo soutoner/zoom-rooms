@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { useChannel } from './useChannel';
+import { useChannel } from 'src/hooks/channel/useChannel';
 import { Channel, Push, Socket } from 'phoenix';
 
 const mockChannel = vi.fn((topic: string) => new Channel(topic));
