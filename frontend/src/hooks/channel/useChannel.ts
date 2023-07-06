@@ -14,7 +14,7 @@ export const useChannel = (socket: Socket | null, channelName: string) => {
     return () => {
       channel?.leave();
     };
-  }, [channelName, socket]);
+  }, []);
 
   return channel;
 };

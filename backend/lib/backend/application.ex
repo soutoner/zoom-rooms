@@ -7,7 +7,7 @@ defmodule Backend.Application do
 
   @impl true
   def start(_type, _args) do
-    roomList = ["Room1", "Room2", "Room3"]
+    roomList = [%Room{name: "Room1"}, %Room{name: "Room2", busy: true}, %Room{name: "Room3"}]
 
     children = [
       # Start the Telemetry supervisor
@@ -16,7 +16,7 @@ defmodule Backend.Application do
       {Phoenix.PubSub, name: Backend.PubSub},
       # Start the Endpoint (http/https)
       BackendWeb.Endpoint,
-      {Rooms, roomList}
+      {Agents.Rooms, roomList}
 
       # Start a worker by calling: Backend.Worker.start_link(arg)
       # {Backend.Worker, arg}

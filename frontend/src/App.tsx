@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
-import { useChannel } from 'src/hooks/channel/useChannel';
 import { RoomList } from 'src/components/room-list/RoomList';
-import { SocketContext } from 'src/contexts/socket/SocketProvider';
+import { Room as ServiceRoom } from 'src/model/service/Room';
+import { ChannelContext } from 'src/contexts/channel/ChannelProvider';
 import 'src/App.scss';
 
 function App() {
-  const socket = useContext(SocketContext);
-  const channel = useChannel(socket, 'room:lobby');
-  const [roomList, setRoomList] = useState<string[]>([]);
+  const channel = useContext(ChannelContext);
+  const [roomList, setRoomList] = useState<ServiceRoom[]>([]);
 
   useEffect(() => {
     channel?.push('read_rooms', {}).receive('ok', (response) => {
+      console.log(JSON.stringify(response));
       setRoomList(() => response);
     });
   }, [channel]);

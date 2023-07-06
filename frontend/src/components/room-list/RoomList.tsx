@@ -1,8 +1,9 @@
 import { Room } from 'src/components/room/Room';
+import { Room as ServiceRoom } from 'src/model/service/Room';
 import 'src/components/room-list/RoomList.scss';
 
 interface Props {
-  rooms: string[];
+  rooms: ServiceRoom[];
 }
 
 export function RoomList({ rooms }: Props) {
@@ -13,7 +14,7 @@ export function RoomList({ rooms }: Props) {
   return (
     <div className="RoomList" data-testid="RoomList">
       {rooms.map((room, index) => (
-        <Room key={index} name={room} />
+        <Room key={index} id={index} name={room.name} busy={room.busy} />
       ))}
     </div>
   );
